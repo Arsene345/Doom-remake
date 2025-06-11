@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1iovtr0esiyu"]
+
+[ext_resource type="Script" uid="uid://bf2o4olnegt1m" path="res://pc building/area_3d.gd" id="1_thhle"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_thhle"]
+
+[node name="Area3D" type="Area3D"]
+priority = 1
+script = ExtResource("1_thhle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.0503954, 0.0746909, -0.6)
+shape = SubResource("BoxShape3D_thhle")
+debug_color = Color(0, 1, 0.752941, 0.419608)

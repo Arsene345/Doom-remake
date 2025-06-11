@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m6lwm55rbspe"
+path="res://.godot/imported/IDKFA DOOM II - Running From Evil OST Andrew Hulshult.mp3-5e5c787e4ec7bf4d21c3265ef0304d31.mp3str"
+
+[deps]
+
+source_file="res://IDKFA DOOM II - Running From Evil OST Andrew Hulshult.mp3"
+dest_files=["res://.godot/imported/IDKFA DOOM II - Running From Evil OST Andrew Hulshult.mp3-5e5c787e4ec7bf4d21c3265ef0304d31.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://34ucj77hgtmw"]
+
+[sub_resource type="Gradient" id="Gradient_fgkor"]
+offsets = PackedFloat32Array(0.869048, 1)
+colors = PackedColorArray(0.155505, 0.312996, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gpyec"]
+gradient = SubResource("Gradient_fgkor")
+fill_from = Vector2(0.521552, 0)
+fill_to = Vector2(0.521552, 1)
+
+[node name="selectobjmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_gpyec")

@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgunht5vr2toh"]
+
+[ext_resource type="PackedScene" uid="uid://drp1mhywvftkl" path="res://modele/shootgun/scene.tscn" id="1_vvj7n"]
+[ext_resource type="Script" uid="uid://ca0rgrwj1c5o" path="res://pc building/shootgun.gd" id="1_wg56d"]
+[ext_resource type="AudioStream" uid="uid://b01li5oto6m33" path="res://pc building/Half Life 2 Shotgun Sound Effect.mp3" id="3_t3hqp"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wg56d"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_t3hqp"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Animation" id="Animation_t3hqp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wg56d"]
+resource_name = "fir"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.349066, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70nnx"]
+_data = {
+&"RESET": SubResource("Animation_t3hqp"),
+&"fir": SubResource("Animation_wg56d")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vvj7n"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(0.48384, 0, -6.24905e-09, 0, 0.36288, 0, 1.34595e-08, 0, 0.22464, 0, 0, 0)
+script = ExtResource("1_wg56d")
+
+[node name="scene" parent="." instance=ExtResource("1_vvj7n")]
+transform = Transform3D(0.0048, 0, 0, 0, 0.0036864, 0, 0, 0, 0.004368, 4.59955e-09, 0, 0.356125)
+rotation_order = 0
+
+[node name="Marker3D" type="Marker3D" parent="scene"]
+transform = Transform3D(10.8475, 0, 0, 0, 24.8064, 0, 0, 0, 26.3569, 8.53933e-05, 119.606, -815.305)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="scene/Marker3D"]
+transform = Transform3D(1, 0, -5.32907e-15, 0, 1, 0, -5.32907e-15, 0, 1, -2.20844e-08, 0, -0.773333)
+emitting = false
+amount = 16
+lifetime = 0.25
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_wg56d")
+draw_pass_1 = SubResource("SphereMesh_t3hqp")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="scene"]
+transform = Transform3D(430.583, 0, 0, 0, 747.54, 0, 0, 0, 1019.13, 0, 0, 0)
+stream = ExtResource("3_t3hqp")
+volume_db = -30.0
+
+[node name="cooldown" type="Timer" parent="scene"]
+wait_time = 0.75
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scene"]
+libraries = {
+&"": SubResource("AnimationLibrary_70nnx")
+}
+speed_scale = 2.25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.333213, -1.06803e-20, -4.28757e-07, 0, 0.703035, 2.42543e-13, 2.91304e-08, 1.22168e-13, 4.90441, 4.55511e-08, 0.23, -0.790627)
+shape = SubResource("BoxShape3D_vvj7n")

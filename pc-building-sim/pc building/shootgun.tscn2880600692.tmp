@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgunht5vr2toh"]
+
+[ext_resource type="PackedScene" uid="uid://drp1mhywvftkl" path="res://modele/shootgun/scene.tscn" id="1_vvj7n"]
+[ext_resource type="Script" uid="uid://ca0rgrwj1c5o" path="res://pc building/shootgun.gd" id="1_wg56d"]
+[ext_resource type="AudioStream" uid="uid://b01li5oto6m33" path="res://pc building/Half Life 2 Shotgun Sound Effect.mp3" id="3_t3hqp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vvj7n"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(-0.48384, 0, -1.33896e-08, 0, 0.36288, 0, 2.88391e-08, 0, -0.22464, 0, 0, 0)
+script = ExtResource("1_wg56d")
+
+[node name="scene" parent="." instance=ExtResource("1_vvj7n")]
+transform = Transform3D(-0.0048, -1.79266e-18, -3.81863e-10, -2.39022e-17, 0.0036864, 8.02023e-11, 4.19629e-10, 6.47788e-11, -0.004368, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="scene"]
+transform = Transform3D(-10.8475, -3.0427e-13, -1.24955e-06, -1.59162e-13, 24.8064, 1.14686e-06, 1.6987e-06, 1.07939e-06, -26.3569, 8.53933e-05, 119.606, -815.305)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="scene"]
+transform = Transform3D(430.583, 1.1388e-12, -6.35999e-05, 0, 747.54, -1.40407e-05, 0, 0, 1019.13, 0, 0, 0)
+stream = ExtResource("3_t3hqp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scene"]
+root_node = NodePath("../AudioStreamPlayer3D")
+
+[node name="cooldown" type="Timer" parent="scene"]
+wait_time = 1.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.333213, 0, 0, 0, 0.703035, 2.42543e-13, 0, -1.22168e-13, -4.90441, -3.72529e-09, 0.23, 0.99)
+shape = SubResource("BoxShape3D_vvj7n")
